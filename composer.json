@@ -15,6 +15,7 @@
     "laravel/sanctum": "^3.3",
     "laravel/tinker": "^2.8",
     "meilisearch/meilisearch-php": "^1.14",
+    "php-open-source-saver/jwt-auth": "^2.8",
     "predis/predis": "^3.0",
     "zircote/swagger-php": "^5.1"
   },
