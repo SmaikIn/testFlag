@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Domains\User\Observers\UserObserver;
 use App\Models\CartItem;
+use App\Models\OrderPaymentType;
 use App\Models\Product;
 use App\Models\User;
 use App\Observers\CartItemObserver;
+use App\Observers\OrderPaymentTypeObserver;
 use App\Observers\ProductObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -33,6 +35,7 @@ class EventServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Product::observe(ProductObserver::class);
         CartItem::observe(CartItemObserver::class);
+        OrderPaymentType::observe(OrderPaymentTypeObserver::class);
         //
     }
 
