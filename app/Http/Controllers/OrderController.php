@@ -29,7 +29,6 @@ class OrderController extends Controller
                 'data' => Auth::user()->cartItems()->get()->toJson()
             ]
         );
-
         $order->refresh();
 
         return $orderPaymentType->link.'/'.$order->id;
@@ -42,7 +41,10 @@ class OrderController extends Controller
 
     public function update(int $id)
     {
-        Order::findOrFail($id)->update(['order_status_id' => 2]);
+        $order = Order::findOrFail($id);
+        $order->update(['order_status_id' => 2]);
+        $order->refresh();
+
         return new OrderResource($order);
     }
 
