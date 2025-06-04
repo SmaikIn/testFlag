@@ -93,6 +93,13 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        "documents" => [
+            'driver' => 'documents',
+            'host' => env('MEILISEARCH_HOST', '127.0.0.1'),
+            'port' => env('MEILISEARCH_PORT', '7700'),
+            'key' => env('MEILISEARCH_KEY', ''),
+        ]
+
     ],
 
     /*
@@ -121,7 +128,7 @@ return [
 
     'redis' => [
 
-        'client' => env('REDIS_CLIENT', 'phpredis'),
+        'client' => env('REDIS_CLIENT', 'predis'),
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'redis'),

@@ -46,6 +46,20 @@ services:
         reservations:
           memory: "1024M"
 
+  horizon:
+    container_name: flag_horizon
+    build:
+      context: ./
+      dockerfile: .docker/php/Dockerfile
+    working_dir: /var/www
+    command: php artisan horizon
+    volumes:
+      - .:/var/www
+    networks:
+      - app-network
+    depends_on:
+      - app
+
   # DB service (MySQL)
   db:
     container_name: flag_db
