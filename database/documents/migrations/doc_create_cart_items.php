@@ -11,9 +11,10 @@ return new class extends Migration {
         $key = config('database.connections.documents.key');
         $client = new \Meilisearch\Client($host, $key);
 
-        $client->createIndex('products', ['primaryKey' => 'id']);
-        $client->index('products')->updateFilterableAttributes([
-            'name',
+        $client->createIndex('cart_items', ['primaryKey' => 'id']);
+        $client->index('cart_items')->updateFilterableAttributes([
+            'user_id',
+            'product_id',
         ]);
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration {
         $key = config('database.connections.documents.key');
 
         $client = new \Meilisearch\Client($host, $key);
-        $client->deleteIndex('products');
+        $client->deleteIndex('cart_items');
     }
 };
