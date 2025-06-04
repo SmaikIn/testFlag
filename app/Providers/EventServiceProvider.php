@@ -3,10 +3,18 @@
 namespace App\Providers;
 
 use App\Domains\User\Observers\UserObserver;
+use App\Events\OrderCashEvent;
+use App\Listeners\OrderCashListener;
 use App\Models\CartItem;
+use App\Models\Order;
+use App\Models\OrderPaymentType;
+use App\Models\OrderStatus;
 use App\Models\Product;
 use App\Models\User;
 use App\Observers\CartItemObserver;
+use App\Observers\OrderObserver;
+use App\Observers\OrderPaymentTypeObserver;
+use App\Observers\OrderStatusObserver;
 use App\Observers\ProductObserver;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
@@ -23,6 +31,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        OrderCashEvent::class => [
+            OrderCashListener::class,
+        ],
     ];
 
     /**
@@ -33,6 +44,9 @@ class EventServiceProvider extends ServiceProvider
         User::observe(UserObserver::class);
         Product::observe(ProductObserver::class);
         CartItem::observe(CartItemObserver::class);
+        OrderPaymentType::observe(OrderPaymentTypeObserver::class);
+        OrderStatus::observe(OrderStatusObserver::class);
+        Order::observe(OrderObserver::class);
         //
     }
 
